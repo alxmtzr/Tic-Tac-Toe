@@ -42,8 +42,16 @@ public class Game {
             startGamePvP();
         }else {
             difficulty = getDifficultyLevel();
-            // TODO: Computer implementation
+            if(difficulty == 1){
+                startPvCEasy();
+            }/*else if(difficulty == 2){
+                startPvCHard();
+            }*/
         }
+    }
+
+    private void startPvCEasy() {
+        // TODO: Player vs Computer functionality easy -> computer pics random numbers
     }
 
     private int getDifficultyLevel() {
@@ -57,10 +65,15 @@ public class Game {
             clearScreen();
             System.out.println("You selected difficulty level --easy--");
             startCountdown(3);
-        }if(difficulty == 2){
+        }else if(difficulty == 2){
             clearScreen();
             System.out.println("You selected difficulty level --hard--");
             startCountdown(3);
+        }else {
+            clearScreen();
+            System.out.println("Invalid input! Please type in correct level.");
+            sleep(2000);
+            getDifficultyLevel();
         }
         return difficulty;
     }
