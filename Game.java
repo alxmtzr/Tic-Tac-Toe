@@ -161,31 +161,30 @@ public class Game {
         System.out.println("2 = Player vs. Computer");
 
         int input_mode = scanner.nextInt();
-        try {
-            if (input_mode == 1 || input_mode == 2) {
-                if (input_mode == 1) {
-                    System.out.println("Selected mode: player vs player");
-                    // Countdown 3 seconds
-                    System.out.println("Game starts in...");
-                    for (int i = 3; i >= 0; i--) {
-                        Thread.sleep(1000);
-                        System.out.print("\r" + i);
-                    }
-                } else {
-                    System.out.println("Selected mode: player vs computer");
-                    Thread.sleep(2000);
+        if (input_mode == 1 || input_mode == 2) {
+            if (input_mode == 1) {
+                System.out.println("Selected mode: player vs player");
+                // Countdown 3 seconds
+                System.out.println("Game starts in...");
+                for (int i = 3; i >= 0; i--) {
+                    System.out.print("\r" + i);
+                    sleep(1000);
                 }
-                return input_mode;
-            } else if (input_mode == 3) {
-                System.out.println("quit game");
-                System.exit(0);
             } else {
-                System.out.println("Invalid input!");
-                getGameMode();
+                System.out.println("Selected mode: player vs computer");
+                sleep(2000);
+                clearScreen();
+                System.out.println();
             }
-        }catch (Exception e){
-            e.printStackTrace();
+            return input_mode;
+        } else if (input_mode == 3) {
+            System.out.println("quit game");
+            System.exit(0);
+        } else {
+            System.out.println("Invalid input!");
+            getGameMode();
         }
+
         return 0;
     }
 
