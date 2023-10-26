@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 // TODO: program computer
 public class Game {
@@ -5,6 +6,7 @@ public class Game {
     private Scanner scanner;
     // mode 1 PvP, mode 2 player vs computer
     private int mode;
+    private int difficulty;
     private Player player1;
     private Player player2;
     private boolean game_ended = false;
@@ -39,9 +41,41 @@ public class Game {
 
             startGamePvP();
         }else {
-            System.out.println("Player vs computer not implemented...");
-            // startGamePvC();
+            difficulty = getDifficultyLevel();
+            if(difficulty == 1){
+                startPvCEasy();
+            }/*else if(difficulty == 2){
+                startPvCHard();
+            }*/
         }
+    }
+
+    private void startPvCEasy() {
+        // TODO: Player vs Computer functionality easy -> computer pics random numbers
+    }
+
+    private int getDifficultyLevel() {
+        clearScreen();
+
+        // getting difficulty level
+        System.out.println("Select difficulty level (1=easy, 2=hard): ");
+        int difficulty = scanner.nextInt();
+
+        if(difficulty == 1){
+            clearScreen();
+            System.out.println("You selected difficulty level --easy--");
+            startCountdown(3);
+        }else if(difficulty == 2){
+            clearScreen();
+            System.out.println("You selected difficulty level --hard--");
+            startCountdown(3);
+        }else {
+            clearScreen();
+            System.out.println("Invalid input! Please type in correct level.");
+            sleep(2000);
+            getDifficultyLevel();
+        }
+        return difficulty;
     }
 
     private void welcomeScreen() {
@@ -161,32 +195,33 @@ public class Game {
         System.out.println("2 = Player vs. Computer");
 
         int input_mode = scanner.nextInt();
-        try {
-            if (input_mode == 1 || input_mode == 2) {
-                if (input_mode == 1) {
-                    System.out.println("Selected mode: player vs player");
-                    // Countdown 3 seconds
-                    System.out.println("Game starts in...");
-                    for (int i = 3; i >= 0; i--) {
-                        Thread.sleep(1000);
-                        System.out.print("\r" + i);
-                    }
-                } else {
-                    System.out.println("Selected mode: player vs computer");
-                    Thread.sleep(2000);
-                }
-                return input_mode;
-            } else if (input_mode == 3) {
-                System.out.println("quit game");
-                System.exit(0);
+        if (input_mode == 1 || input_mode == 2) {
+            if (input_mode == 1) {
+                System.out.println("Selected mode: player vs player");
+                // Countdown 3 seconds
+                startCountdown(3);
             } else {
-                System.out.println("Invalid input!");
-                getGameMode();
+                System.out.println("Selected mode: player vs computer");
+                sleep(2000);
             }
-        }catch (Exception e){
-            e.printStackTrace();
+            return input_mode;
+        } else if (input_mode == 3) {
+            System.out.println("quit game");
+            System.exit(0);
+        } else {
+            System.out.println("Invalid input!");
+            getGameMode();
         }
+
         return 0;
+    }
+
+    private void startCountdown(int seconds) {
+        System.out.println("Game starts in...");
+        for (int i = seconds; i > 0; i--) {
+            System.out.print("\r" + i);
+            sleep(1000);
+        }
     }
 
     private void switchActiveStatus(){
