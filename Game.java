@@ -258,7 +258,7 @@ public class Game {
         // if setting mark was not successful
         if(!setMarkSuccess){
             clearScreen();
-            System.out.println("Field is already been used. Try again!");
+            System.out.println("Invalid input. Try again!");
             try{
                 Thread.sleep(3000);
             }catch (InterruptedException rte){
