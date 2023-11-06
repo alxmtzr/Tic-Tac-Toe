@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 // TODO: program computer
 public class Game {
@@ -50,10 +49,6 @@ public class Game {
         }
     }
 
-    private void startPvCEasy() {
-        // TODO: Player vs Computer functionality easy -> computer pics random numbers
-    }
-
     private int getDifficultyLevel() {
         clearScreen();
 
@@ -89,6 +84,7 @@ public class Game {
         }
     }
 
+    //  ###################### Game modes #######################
     private void startGamePvP() {
         scanner.nextLine();
         while(!game_ended){
@@ -138,6 +134,11 @@ public class Game {
         }
         playAgain();
     }
+
+    private void startPvCEasy() {
+        // TODO: Player vs Computer functionality easy -> computer pics random numbers
+    }
+
 
     private void playAgain() {
         System.out.println("Play again (y/n)?");
